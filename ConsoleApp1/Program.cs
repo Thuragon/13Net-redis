@@ -20,8 +20,8 @@ namespace ConsoleApp1
             db.StringSet("Ola", "Oi eu sei responder");
             var value = db.StringGet("Ola");
 
-            var pub = redis.GetSubscriber();
-            pub.Publish("Perguntas", "Qual é a pergunta que ele vai fazer?");
+            //var pub = redis.GetSubscriber();
+            //pub.Publish("Perguntas", "Qual é a pergunta que ele vai fazer?");
 
             var sub = redis.GetSubscriber();
             sub.Subscribe("Perguntas", (channel, msg) =>
