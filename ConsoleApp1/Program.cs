@@ -15,7 +15,7 @@ namespace ConsoleApp1
             Console.ReadKey(); 
 
             var redis = ConnectionMultiplexer.Connect("localhost");
-            var db = redis.GetDatabase();
+            var db = redis.GetDatabase(); 
 
             db.StringSet("Ola", "Oi eu sei responder");
             var value = db.StringGet("Ola");
