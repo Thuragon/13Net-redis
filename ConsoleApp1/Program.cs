@@ -33,11 +33,10 @@ namespace ConsoleApp1
             var pub = client.GetSubscriber();
             var pergunta = msg.Split(':');
             string x = pergunta[0].Substring(0, 1);
-
-            var resposta = int.Parse(x) + int.Parse(x); //getRespostaGoogle(msg);
+            var resposta = int.TryParse(x, out int c) ? (int.Parse(x) * 2).ToString() : "Não sei sugiro procurar no google"; //getRespostaGoogle(msg);
 
             var db = client.GetDatabase();
-            db.HashSet(pergunta[0], "Joao",resposta);
+            db.HashSet(pergunta[0], "Joao - GianCarlo",resposta);
         }
 
         //public static string getRespostaGoogle(string msg)
