@@ -10,10 +10,10 @@ namespace ConsoleApp1
 {
     class Program
     {
-        //string bot = "191.232.234.20";
-        string bot = "localhost";
+        static string bot = "191.232.234.20";
+        //static string bot = "localhost";
         public static RedisChannel canal = "perguntas";
-        public static IConnectionMultiplexer client = ConnectionMultiplexer.Connect("localhost");
+        public static IConnectionMultiplexer client = ConnectionMultiplexer.Connect(bot);
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
@@ -35,6 +35,9 @@ namespace ConsoleApp1
             var pergunta = msg.Split(':');
             string x = pergunta[1].Trim().Substring(0, 1);
             var resposta = int.TryParse(x, out int c) ? (int.Parse(x) * 2).ToString() : "Não sei sugiro procurar no google"; //getRespostaGoogle(msg);
+
+            if (x.Contains("Joao Roberto"))
+                resposta = "Presente";
 
             var db = client.GetDatabase();
             db.HashSet(pergunta[0], "Joao - GianCarlo",resposta);
